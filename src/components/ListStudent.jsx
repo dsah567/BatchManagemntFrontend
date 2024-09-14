@@ -52,6 +52,7 @@ const ListStudents = () => {
           <th>Full uid</th>
             <th>Full Name</th>
             <th>Age</th>
+            <th>Gender</th>
             <th>Mobile No</th>
             <th>Subject Batch</th>
             <th>Actions</th>
@@ -63,6 +64,7 @@ const ListStudents = () => {
             <td>{student.uid}</td>
               <td>{student.fullName}</td>
               <td>{student.age}</td>
+              <td>{student.gender}</td>
               <td>{student.mobileNo}</td>
               <td>{student.subjectBatch}</td>
               <td>

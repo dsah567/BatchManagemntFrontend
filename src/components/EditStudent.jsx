@@ -7,6 +7,7 @@ const EditStudent = () => {
   const [studentData, setStudentData] = useState({
     fullName: '',
     age: '',
+    gender:'',
     mobileNo: '',
     subjectBatch: '',
   });
@@ -59,6 +60,14 @@ const EditStudent = () => {
             required
           />
         </div>
+
+        <select value={studentData.gender} onChange={(e) => setStudentData({ ...studentData, gender: e.target.value })}>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
         <div>
           <label>Mobile No:</label>
           <input

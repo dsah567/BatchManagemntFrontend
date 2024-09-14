@@ -16,6 +16,9 @@ const AddStudent = ({ teacherId }) => {
       .required('Age is required')
       .min(5, 'Minimum age is 5')
       .max(100, 'Maximum age is 100'),
+      gender: Yup.string()
+      .oneOf(['Male', 'Female', 'Other'], 'Gender is required')
+      .required('gender is required'),
     mobileNo: Yup.string()
       .required('Mobile number is required')
       .matches(/^[0-9]{10}$/, 'Mobile number must be 10 digits'),
@@ -28,6 +31,7 @@ const AddStudent = ({ teacherId }) => {
     initialValues: {
       fullName: '',
       age: '',
+      gender:"",
       mobileNo: '',
       uid: '',
       subjectBatch: '',
@@ -103,6 +107,21 @@ const AddStudent = ({ teacherId }) => {
           ) : null}
         </div>
 
+        <div>
+        <label>Gender</label>
+        <select
+          name="gender"
+          value={formik.values.gender}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        >
+          <option value="" label="Select gender" />
+          <option value="Male" label="Male" />
+          <option value="Female" label="Female" />
+          <option value="Other" label="Other" />
+        </select>
+        {formik.touched.gender && formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
+      </div>
         {/* Mobile Number */}
         <div>
           <label>Mobile Number</label>
