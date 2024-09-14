@@ -19,7 +19,7 @@ const App = () => {
     const checkAuth = async () => {
       try {
         // Call an endpoint to verify if the user is logged in
-        const { data } = await axios.get('/api/v1/teacher/me', { withCredentials: true });
+        const { data } = await axios.get('https://batchmanagemntbackend.onrender.com/api/v1/teacher/me', { withCredentials: true });
         
         if (data && data.user) {
           // If the user is authenticated, store their info in Redux

@@ -11,7 +11,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/v1/teacher/logout', {}, { withCredentials: true });
+      await axios.post('https://batchmanagemntbackend.onrender.com/api/v1/teacher/logout', {}, { withCredentials: true });
       dispatch(logout());
       navigate('/signin');
     } catch (error) {

@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/teachers/signup', {
+      await axios.post('https://batchmanagemntbackend.onrender.com/api/teachers/signup', {
         fullName,
         email,
         password,
