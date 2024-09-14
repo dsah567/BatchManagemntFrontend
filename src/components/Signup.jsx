@@ -15,7 +15,7 @@ const SignUp = () => {
         fullName,
         email,
         password,
-      });
+      },{ withCredentials: true });
 
       navigate('/signin');
     } catch (error) {
