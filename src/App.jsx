@@ -9,20 +9,26 @@ import SignUp from './components/Signup';
 import About from './components/About';
 import Home from './components/Home';
 import Header from './components/Header';
+import AddStudent from './components/AddStudent';
+import EditStudent from './components/EditStudent';
+import ListStudents from './components/ListStudent';
+
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user); // Check for user info in Redux
+  const { user } = useSelector((state) => state.auth);
 
   // On component mount, check if user is already logged in
   useEffect(() => {
+
     const checkAuth = async () => {
+      console.log("app");
       try {
         // Call an endpoint to verify if the user is logged in
         const { data } = await axios.get('https://batchmanagemntbackend.onrender.com/api/v1/teacher/me', { withCredentials: true });
-        
+        console.log("data");
+        console.log("data",data);
         if (data && data.user) {
-          // If the user is authenticated, store their info in Redux
           dispatch(login({ user: data.user }));
         }
       } catch (error) {
@@ -38,15 +44,16 @@ const App = () => {
       <Header />
       <Routes>
         {/* Public Routes */}
-        <Route path="/signin" element={user ? <Navigate to="/home" /> : <SignIn />} />
-        <Route path="/signup" element={user ? <Navigate to="/home" /> : <SignUp />} />
+        <Route path="/signin" element={user ? <Home/>: <SignIn />} />
+        <Route path="/signup" element={user ?<Home/>: <SignUp />} />
         <Route path="/about" element={<About />} />
 
         {/* Protected Routes */}
-        <Route path="/home" element={user ? <Home /> : <Navigate to="/signin" />} />
+        <Route path="/home" element={user ? <Home />: <SignIn/> } />
+        <Route path="/addstudent" element={user ? <AddStudent/>: <SignIn/> } />
+        <Route path="/liststudent" element={user ? <ListStudents/>: <SignIn/> } />
+        <Route path="/editstudent/:studentId" element={user ? <EditStudent/>: <SignIn/> } />
 
-        {/* Fallback Route */}
-        <Route path="*" element={<Navigate to={user ? '/home' : '/signin'} />} />
       </Routes>
     </Router>
   );
