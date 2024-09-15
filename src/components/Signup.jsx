@@ -15,10 +15,10 @@ const SignUp = () => {
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/png') && file.size <= 2 * 1024 * 1024) {
+    if (file && (file.type === 'image/jpeg' || file.type === 'image/png') && file.size <= 300 * 1024) {
       setPhoto(file); // Set photo if valid
     } else {
-      alert('Please upload an image in jpg/jpeg/png format under 2MB');
+      alert('Please upload an image in jpeg/png format under 300KB');
       setPhoto(null);
     }
   };
