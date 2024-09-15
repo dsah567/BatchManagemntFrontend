@@ -39,21 +39,26 @@ const EditStudent = () => {
   };
 
   return (
-    <div>
-      <h2>Edit Student</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Full Name:</label>
+    <div className="container mx-auto p-4">
+    <h1 className="text-2xl font-bold mb-4 text-center md:text-4xl">Edit Student</h1>
+      <form onSubmit={handleSubmit}className="space-y-6">
+      <div className="flex flex-col md:flex-row md:space-x-4">
+      <div className="w-full md:w-1/2">
+          <label className="block text-lg font-medium mb-2">Full Name:</label>
           <input
+          className="w-full p-2 border border-gray-300 rounded-md"
             type="text"
             value={studentData.fullName}
             onChange={(e) => setStudentData({ ...studentData, fullName: e.target.value })}
             required
           />
         </div>
-        <div>
-          <label>Age:</label>
+        </div>
+
+        <div className="w-full md:w-1/2">
+          <label className="block text-lg font-medium mb-2">Age:</label>
           <input
+          className="w-full p-2 border border-gray-300 rounded-md"
             type="number"
             value={studentData.age}
             onChange={(e) => setStudentData({ ...studentData, age: e.target.value })}
@@ -61,32 +66,42 @@ const EditStudent = () => {
           />
         </div>
 
-        <select value={studentData.gender} onChange={(e) => setStudentData({ ...studentData, gender: e.target.value })}>
-        <option value="">Select Gender</option>
+        <div>
+        <label className="block text-lg font-medium mb-2">Gender</label>
+        <select
+          className="w-full p-2 border border-gray-300 rounded-md"
+         value={studentData.gender} onChange={(e) => setStudentData({ ...studentData, gender: e.target.value })}>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
+      </div>
 
-        <div>
-          <label>Mobile No:</label>
-          <input
+      <div>
+        <label className="block text-lg font-medium mb-2">Mobile Number</label>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-md"
             type="text"
             value={studentData.mobileNo}
             onChange={(e) => setStudentData({ ...studentData, mobileNo: e.target.value })}
             required
           />
         </div>
+
         <div>
-          <label>Subject Batch:</label>
-          <input
+        <label className="block text-lg font-medium mb-2">Subject Batch</label>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-md"
             type="text"
             value={studentData.subjectBatch}
             onChange={(e) => setStudentData({ ...studentData, subjectBatch: e.target.value })}
             required
           />
         </div>
-        <button type="submit">Update Student</button>
+        <button
+        type="submit"
+        className="bg-blue-500 text-white p-2 rounded-md w-full"
+        >Update Student</button>
       </form>
     </div>
   );
