@@ -14,10 +14,8 @@ const SignIn = () => {
     e.preventDefault();
     
     try {
-      // No need to handle JWT in frontend; it is stored in cookies by backend
       const res=await axios.post('https://batchmanagemntbackend.onrender.com/api/v1/teacher/signin', { email, password }, { withCredentials: true });
       console.log(res.data);
-      // Optionally, store user data (without token) in Redux
       dispatch(login({ user:  res.data.user  }));
       navigate('/home');
     } catch (error) {
