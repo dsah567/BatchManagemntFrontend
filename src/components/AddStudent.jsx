@@ -43,14 +43,12 @@ const AddStudent = ({ teacherId }) => {
         //Check if UID is unique by making a request to the backend
         const uidResponse = await axios.post(
           `https://batchmanagemntbackend.onrender.com/api/v1/teacher/checkuid`,
-          { uid: values.uid }
+          { uid: values.uid },{ withCredentials: true }
         );
 
         if (uidResponse.data.exists) {
-            console.log(uidResponse.data.exists);
-          toast.success('UID must be unique',{
-            position: "top-right",
-            
+          alert('UID already exists, must be unique.', {
+            position: 'top-right',
           });
           setIsSubmitting(false);
           return;
@@ -63,7 +61,9 @@ const AddStudent = ({ teacherId }) => {
           { withCredentials: true } // To send credentials like cookies
         );
 
-        toast.success('Student added successfully!');
+        toast.success('Student added successfully!', {
+          position: 'top-right'}
+          );
         formik.resetForm();
       } catch (error) {
         toast.error(error.response?.data?.error || 'Something went wrong');
@@ -74,13 +74,15 @@ const AddStudent = ({ teacherId }) => {
   });
 
   return (
-    <div className="container">
-      <h1>Add Student</h1>
-      <form onSubmit={formik.handleSubmit}>
+    <div className="container mx-auto p-4">
+    <h1 className="text-2xl font-bold mb-4 text-center md:text-4xl">Add Student</h1>
+    <form onSubmit={formik.handleSubmit} className="space-y-6">
+      <div className="flex flex-col md:flex-row md:space-x-4">
         {/* Full Name */}
-        <div>
-          <label>Full Name</label>
+        <div className="w-full md:w-1/2">
+          <label className="block text-lg font-medium mb-2">Full Name</label>
           <input
+            className="w-full p-2 border border-gray-300 rounded-md"
             type="text"
             name="fullName"
             value={formik.values.fullName}
@@ -88,14 +90,15 @@ const AddStudent = ({ teacherId }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
-            <div className="error">{formik.errors.fullName}</div>
+            <div className="text-red-500 text-sm">{formik.errors.fullName}</div>
           ) : null}
         </div>
-
+  
         {/* Age */}
-        <div>
-          <label>Age</label>
+        <div className="w-full md:w-1/2">
+          <label className="block text-lg font-medium mb-2">Age</label>
           <input
+            className="w-full p-2 border border-gray-300 rounded-md"
             type="number"
             name="age"
             value={formik.values.age}
@@ -103,13 +106,16 @@ const AddStudent = ({ teacherId }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.age && formik.errors.age ? (
-            <div className="error">{formik.errors.age}</div>
+            <div className="text-red-500 text-sm">{formik.errors.age}</div>
           ) : null}
         </div>
-
-        <div>
-        <label>Gender</label>
+      </div>
+  
+      {/* Gender */}
+      <div>
+        <label className="block text-lg font-medium mb-2">Gender</label>
         <select
+          className="w-full p-2 border border-gray-300 rounded-md"
           name="gender"
           value={formik.values.gender}
           onChange={formik.handleChange}
@@ -120,58 +126,69 @@ const AddStudent = ({ teacherId }) => {
           <option value="Female" label="Female" />
           <option value="Other" label="Other" />
         </select>
-        {formik.touched.gender && formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
+        {formik.touched.gender && formik.errors.gender ? (
+          <div className="text-red-500 text-sm">{formik.errors.gender}</div>
+        ) : null}
       </div>
-        {/* Mobile Number */}
-        <div>
-          <label>Mobile Number</label>
-          <input
-            type="text"
-            name="mobileNo"
-            value={formik.values.mobileNo}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.mobileNo && formik.errors.mobileNo ? (
-            <div className="error">{formik.errors.mobileNo}</div>
-          ) : null}
-        </div>
-
-        {/* UID */}
-        <div>
-          <label>UID</label>
-          <input
-            type="text"
-            name="uid"
-            value={formik.values.uid}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.uid && formik.errors.uid ? (
-            <div className="error">{formik.errors.uid}</div>
-          ) : null}
-        </div>
-
-        {/* Subject Batch */}
-        <div>
-          <label>Subject Batch</label>
-          <input
-            type="text"
-            name="subjectBatch"
-            value={formik.values.subjectBatch}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.subjectBatch && formik.errors.subjectBatch ? (
-            <div className="error">{formik.errors.subjectBatch}</div>
-          ) : null}
-        </div>
-
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Add Student'}
-        </button>
-      </form>
-    </div>
+  
+      {/* Mobile Number */}
+      <div>
+        <label className="block text-lg font-medium mb-2">Mobile Number</label>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-md"
+          type="text"
+          name="mobileNo"
+          value={formik.values.mobileNo}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.mobileNo && formik.errors.mobileNo ? (
+          <div className="text-red-500 text-sm">{formik.errors.mobileNo}</div>
+        ) : null}
+      </div>
+  
+      {/* UID */}
+      <div>
+        <label className="block text-lg font-medium mb-2">UID</label>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-md"
+          type="text"
+          name="uid"
+          value={formik.values.uid}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.uid && formik.errors.uid ? (
+          <div className="text-red-500 text-sm">{formik.errors.uid}</div>
+        ) : null}
+      </div>
+  
+      {/* Subject Batch */}
+      <div>
+        <label className="block text-lg font-medium mb-2">Subject Batch</label>
+        <input
+          className="w-full p-2 border border-gray-300 rounded-md"
+          type="text"
+          name="subjectBatch"
+          value={formik.values.subjectBatch}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.subjectBatch && formik.errors.subjectBatch ? (
+          <div className="text-red-500 text-sm">{formik.errors.subjectBatch}</div>
+        ) : null}
+      </div>
+  
+      <button
+        type="submit"
+        className="bg-blue-500 text-white p-2 rounded-md w-full"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Submitting...' : 'Add Student'}
+      </button>
+    </form>
+  </div>
+  
   );
 };
 
