@@ -80,77 +80,117 @@ const SignUp = () => {
 
       navigate('/signin');
     } catch (error) {
+      console.log(error.response.data.message);
+      alert(error.response.data.message);
       console.error('Sign-up failed', error);
     }
   };
 
   return (
-    <form onSubmit={handleSignUp} encType="multipart/form-data">
-      <div>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
-        {errors.fullName && <span>{errors.fullName}</span>}
+  
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 className="text-4xl font-bold mb-8 text-center">Sign Up</h1>
+
+        <form onSubmit={handleSignUp} encType="multipart/form-data">
+          {/* Full Name */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            />
+            {errors.fullName && <span className="text-red-500 text-sm">{errors.fullName}</span>}
+          </div>
+
+          {/* Email */}
+          <div className="mb-4">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            />
+            {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
+          </div>
+
+          {/* Password */}
+          <div className="mb-4">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            />
+            {errors.password && <span className="text-red-500 text-sm">{errors.password}</span>}
+          </div>
+
+          {/* Age */}
+          <div className="mb-4">
+            <input
+              type="number"
+              placeholder="Age"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            />
+            {errors.age && <span className="text-red-500 text-sm">{errors.age}</span>}
+          </div>
+
+          {/* Phone Number */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={phoneNo}
+              onChange={(e) => setPhoneNo(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            />
+            {errors.phoneNo && <span className="text-red-500 text-sm">{errors.phoneNo}</span>}
+          </div>
+
+          {/* Gender */}
+          <div className="mb-4">
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-md text-lg"
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            {errors.gender && <span className="text-red-500 text-sm">{errors.gender}</span>}
+          </div>
+
+          {/* Profile Photo */}
+          <div className="mb-6">
+            <input
+              type="file"
+              accept="image/jpeg, image/png"
+              onChange={handlePhotoChange}
+              className="w-full p-2 border border-gray-300 rounded-md"
+            />
+            {errors.photo && <span className="text-red-500 text-sm">{errors.photo}</span>}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-3 rounded-md text-lg font-semibold hover:bg-blue-600"
+          >
+            Sign Up
+          </button>
+        </form>
       </div>
-      <div>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {errors.email && <span>{errors.email}</span>}
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <span>{errors.password}</span>}
-      </div>
-      <div>
-        <input
-          type="number"
-          placeholder="Age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        {errors.age && <span>{errors.age}</span>}
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Phone Number"
-          value={phoneNo}
-          onChange={(e) => setPhoneNo(e.target.value)}
-        />
-        {errors.phoneNo && <span>{errors.phoneNo}</span>}
-      </div>
-      <div>
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-        {errors.gender && <span>{errors.gender}</span>}
-      </div>
-      <div>
-        <input
-          type="file"
-          accept="image/jpeg, image/png"
-          onChange={handlePhotoChange}
-        />
-        {errors.photo && <span>{errors.photo}</span>}
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    </div>
   );
+
 };
 
 export default SignUp;
