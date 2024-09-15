@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 bg-gradient-to-r from-green-200 to-blue-200 shadow-md md:text-xl">
+    <nav className="sticky top-0 bg-gradient-to-r from-green-200 to-blue-200 shadow-md md:text-xl space-x-1 md:spacex-x-4">
     <ul className="flex items-center justify-center space-x-1 md:spacex-x-4 p-4">
       {/* Navigation Links */}
       <div className="flex items-center space-x-4">

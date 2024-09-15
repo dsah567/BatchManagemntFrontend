@@ -44,38 +44,51 @@ const ListStudents = () => {
   };
 
   return (
-    <div>
-      <h2>Student List</h2>
-      <table>
-        <thead>
-          <tr>
-          <th>Full uid</th>
-            <th>Full Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Mobile No</th>
-            <th>Subject Batch</th>
-            <th>Actions</th>
+    <div className="p-6">
+  <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">Student List</h2>
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white rounded-lg shadow-lg border border-gray-300">
+      <thead className="bg-gray-100">
+        <tr>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">UID</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Full Name</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Age</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Gender</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Mobile No</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Subject Batch</th>
+          <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {students.map((student) => (
+          <tr key={student._id} className="border-t border-gray-200 hover:bg-gray-100">
+            <td className="py-3 px-4">{student.uid}</td>
+            <td className="py-3 px-4">{student.fullName}</td>
+            <td className="py-3 px-4">{student.age}</td>
+            <td className="py-3 px-4">{student.gender}</td>
+            <td className="py-3 px-4">{student.mobileNo}</td>
+            <td className="py-3 px-4">{student.subjectBatch}</td>
+            <td className="py-3 px-4">
+              <button 
+                className="bg-blue-500 text-white font-bold py-1 px-3 rounded mr-2 hover:bg-blue-600"
+                onClick={() => handleEdit(student._id)}
+              >
+                Edit
+              </button>
+              <button 
+                className="bg-red-500 text-white font-bold py-1 px-3 rounded hover:bg-red-600"
+                onClick={() => handleDelete(student._id)}
+              >
+                Delete
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => (
-            <tr key={student._id}>
-            <td>{student.uid}</td>
-              <td>{student.fullName}</td>
-              <td>{student.age}</td>
-              <td>{student.gender}</td>
-              <td>{student.mobileNo}</td>
-              <td>{student.subjectBatch}</td>
-              <td>
-                <button onClick={() => handleEdit(student._id)}>Edit</button>
-                <button onClick={() => handleDelete(student._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 
