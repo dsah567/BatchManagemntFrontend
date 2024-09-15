@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <nav className="sticky top-0 bg-gradient-to-r from-green-200 to-blue-200 shadow-md md:text-xl">
-    <ul className="flex items-center justify-center space-x-4 p-4">
+    <ul className="flex items-center justify-center space-x-1 md:spacex-x-4 p-4">
       {/* Navigation Links */}
       <div className="flex items-center space-x-4">
         {isAuthenticated ? (
@@ -41,11 +41,6 @@ const Header = () => {
             <li>
               <NavLink to="/liststudent" className={({ isActive }) => (isActive ? 'text-green-600' : 'text-black')}>
                 ListStudent
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-green-600' : 'text-black')}>
-                About
               </NavLink>
             </li>
             <li>
