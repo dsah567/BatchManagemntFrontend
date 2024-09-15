@@ -9,19 +9,9 @@ const SignUp = () => {
   const [age, setAge] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
   const [gender, setGender] = useState('');
-  const [photo, setPhoto] = useState(null); // For file input
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/png') && file.size <= 300 * 1024) {
-      setPhoto(file); // Set photo if valid
-    } else {
-      alert('Please upload an image in jpeg/png format under 300KB');
-      setPhoto(null);
-    }
-  };
 
   // Validate form fields
   const validateForm = () => {
@@ -65,10 +55,6 @@ const SignUp = () => {
     formData.append('age', age);
     formData.append('phoneno', phoneNo);
     formData.append('gender', gender);
-    if(photo){
-      console.log("ph",photo);
-      formData.append('photo', photo); // Add the photo to formData
-    }
 
     try {
       await axios.post('https://batchmanagemntbackend.onrender.com/api/v1/teacher/signup', formData, {
@@ -166,17 +152,6 @@ const SignUp = () => {
               <option value="Other">Other</option>
             </select>
             {errors.gender && <span className="text-red-500 text-sm">{errors.gender}</span>}
-          </div>
-
-          {/* Profile Photo */}
-          <div className="mb-6">
-            <input
-              type="file"
-              accept="image/jpeg, image/png"
-              onChange={handlePhotoChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            {errors.photo && <span className="text-red-500 text-sm">{errors.photo}</span>}
           </div>
 
           {/* Submit Button */}

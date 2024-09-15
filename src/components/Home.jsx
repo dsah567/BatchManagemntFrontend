@@ -1,31 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
-  const [imageSrc, setImageSrc] = useState(null); 
+  
 
-  const arrayBufferToBase64 =  (buffer) => {
-    let binary = '';
-    const bytes =  new Uint8Array(buffer);
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
-  useEffect( () => {
-    if (user && user.photo && user.photo.data) {
-      // Convert buffer to base64 string
-      const base64Image = arrayBufferToBase64(user.photo.data);
-
-      // Create image src with appropriate content type (assuming JPEG for example)
-      const imageSrc =  `data:image/jpeg;base64,${base64Image}`;
-
-      // Set the image source in state
-      setImageSrc(imageSrc);
-    }
-  }, [user]);
 
   return (
     <div className="container mx-auto p-4">
@@ -41,16 +20,6 @@ const Home = () => {
       <p className="text-lg md:text-xl">Gender: {user?.gender}</p>
     </div>
 
-    {/* Image Section */}
-    {imageSrc && (
-      <div className="bg-gray-200 p-6 rounded-lg shadow-lg w-full md:w-1/2">
-        <img
-          src={imageSrc}
-          alt="User profile"
-          className="w-full h-48 rounded-lg object-cover"
-        />
-      </div>
-    )}
   </div>
   <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
