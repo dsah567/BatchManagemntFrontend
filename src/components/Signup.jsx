@@ -80,6 +80,7 @@ const SignUp = () => {
 
         <form onSubmit={handleSignUp} encType="multipart/form-data">
           {/* Full Name */}
+          <label className="block text-xl font-medium mb-2">Full Name</label>
           <div className="mb-4">
             <input
               type="text"
@@ -92,6 +93,7 @@ const SignUp = () => {
           </div>
 
           {/* Email */}
+          <label className="block text-xl font-medium mb-2">Email</label>
           <div className="mb-4">
             <input
               type="email"
@@ -104,6 +106,7 @@ const SignUp = () => {
           </div>
 
           {/* Password */}
+          <label className="block text-xl font-medium mb-2">Password</label>
           <div className="mb-4">
             <input
               type="password"
@@ -116,6 +119,7 @@ const SignUp = () => {
           </div>
 
           {/* Age */}
+          <label className="block text-xl font-medium mb-2">Age</label>
           <div className="mb-4">
             <input
               type="number"
@@ -128,6 +132,7 @@ const SignUp = () => {
           </div>
 
           {/* Phone Number */}
+          <label className="block text-xl font-medium mb-2">Phone No.</label>
           <div className="mb-4">
             <input
               type="text"
@@ -140,6 +145,7 @@ const SignUp = () => {
           </div>
 
           {/* Gender */}
+          <label className="block text-xl font-medium mb-2">Select Gender</label>
           <div className="mb-4">
             <select
               value={gender}
