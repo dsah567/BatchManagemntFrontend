@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-  <div className="flex flex-col-reverse md:flex-row items-center md:items-start">
+  <div className="flex items-center justify-center md:items-start">
     {/* Text Section */}
     <div className="bg-gray-100 p-6 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-8 w-full md:w-1/2">
       <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center md:text-left">
